@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-TaC-Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animation.css">
+
+</head>
+<body>
+    <div class="win">
+        <p class="winner hide">The Winner is</p>
+        <p class="x-text sign hide">X</p>
+        <p class="o-text sign hide">O</p>
+        <p class="winner draw hide">It's a Draw</p>
+    </div>
+
+    <div class="card">
+        <!-- we will add each game component here -->
+        <div class="item select">
+            <form action="#" class="form">
+                <label for="levels">Choose Difficulty:</label>
+                <select name="level" id="level">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                    <option value="unbeatable">Unbeatable</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- player selection button -->
+        <div class="item player">
+            <button class="btn btn-p x">X</button>
+            <button class="btn btn-p o">O</button>
+        </div>
+
+        <!-- game board -->
+        <div class="item board">
+            <button class="field"><p></p></button>
+            <button class="field"><p></p></button>
+            <button class="field no-r"><p></p></button>
+            <button class="field"><p></p></button>
+            <button class="field"><p></p></button>
+            <button class="field no-r"><p></p></button>
+            <button class="field no-b"><p></p></button>
+            <button class="field no-b"><p></p></button>
+            <button class="field no-b no-r" ><p></p></button>
+        </div>
+
+        <!-- restart button -->
+        <div class="item rst">
+            <button class="btn restart">Restart</button>
+        </div>
+
+    </div>
+ 
+    <script src="main.js"></script>
+</body>
+</html>
