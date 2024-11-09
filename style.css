@@ -1,5 +1,196 @@
 @import url(https://fonts.bunny.net/css?family=advent-pro:200,300,400,500,600);
-
-html{
-    font-family: 'Advent Pro', sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+body{
+    font-size: 36px;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fffbd5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #b20a2c, #fffbd5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #b20a2c, #fffbd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fffbd5;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 80%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    color: #b20a2c;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.01); /* Slight zoom effect on hover */
+}
+
+.board{
+    /* background-color: #fffbd5; */
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px;
+    width: 70%;
+    margin-bottom: .5em;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+.field{
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 600;
+    font-size: 54px;
+    background-color: #fff;
+    color:#b20a2c;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    border-bottom: 2px solid #b20a2c;
+    border-right: 2px solid #b20a2c;
+}
+.field.no-r{
+    border-right: none;
+}
+.field.no-b{
+    border-bottom: none;
+}
+.field:hover{
+    background-color: #b20a2c7f;
+    color: #fffbd5;
+    transition: background-color 2s ease;
+    transition: color 0.5s ease-in-out;
+}
+.btn{
+    background-color: #b20a2c;
+    color: #fffbd5;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5em 1.5em;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+}
+.btn:hover{
+    background-color: #b20a2caf;
+    color:white;
+    transform: translateY(-2px);
+}
+.btn:focus {
+    outline: none;
+    font-size: 22px;
+    padding: 0.6em 1.6em;
+}
+.selected{
+    color: #b20a2c;
+    font-weight: 400;
+    border: none;
+    transform: scale(1.03);
+}
+.not-selected{
+    color: #fffbd5;
+    font-weight: 400;
+    transition: all 0.3s ease-in-out;
+}
+.selected:hover,
+.not-selected:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 1em;
+}
+.player .card {
+    margin-right: 15px;
+}
+.rst{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+.restart{
+    height: 2em;
+    font-size: 24px;
+}
+select{
+    font-family: 'Advent Pro', sans-serif;
+    outline: none;
+    border: none;
+    color: #b20a2c;
+    border-bottom: 2px solid #b20a2c;
+    font-size: 25px;
+    appearance: none;
+}
+select:hover {
+    cursor: pointer;
+    
+}
+option{
+    border: none;
+    outline: none;
+    background-color: #fff;
+    margin: 0.3em;
+    text-align: center;
+}
+.win p{
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 600;
+    z-index: 1;
+    animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.winner {
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, 0);
+    font-size: 35px;
+    color: #b20a2c;
+    animation: winner-highlight 0.8s ease-out;
+}
+
+@keyframes winner-highlight {
+    0% { transform: scale(0.9); }
+    50% { transform: scale(1.1); color: beige; }
+    100% { transform: scale(1); }
+}
+
+.sign {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, 0);
+    font-size: 150px;
+    margin: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.btn ,.field{
+    transform: all 0.3s ease;
+}
+
+
