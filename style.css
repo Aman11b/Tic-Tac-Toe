@@ -82,7 +82,7 @@ body{
     border-radius: 10px;
     padding: 0.5em 1.5em;
     font-family: 'Advent Pro', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
     transition: all 0.3s ease-in;
     cursor: pointer;
@@ -90,12 +90,11 @@ body{
 }
 .btn:hover{
     background-color: #b20a2caf;
-    color:white;
-    transform: translateY(-2px);
+    color:#fffbd5;
 }
 .btn:focus {
     outline: none;
-    font-size: 22px;
+    font-size: 20px;
     padding: 0.6em 1.6em;
 }
 .selected{
@@ -103,26 +102,21 @@ body{
     background-color:#FA4032;
     font-weight: 400;
     border: none;
-    transform: scale(1.03);
 }
 .not-selected{
     color: #fffbd5;
     background-color: #ed1a44;
-    font-weight: 600;
+    font-weight: 400;
     transition: all 0.3s ease-in-out;
-}
-.selected:hover,
-.not-selected:hover{
-    cursor: pointer;
-    transform: scale(1.1);
 }
 
 .player {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    gap: 0.5em;
+    text-align: center;
+    margin-bottom: 10px;
+    gap: 0.3em;
 }
 .player p{
     font-size: 0.5em;
@@ -140,26 +134,7 @@ body{
     height: 2em;
     font-size: 24px;
 }
-select{
-    font-family: 'Advent Pro', sans-serif;
-    outline: none;
-    border: none;
-    color: #b20a2c;
-    border-bottom: 2px solid #b20a2c;
-    font-size: 25px;
-    appearance: none;
-}
-select:hover {
-    cursor: pointer;
-    
-}
-option{
-    border: none;
-    outline: none;
-    background-color: #fff;
-    margin: 0.3em;
-    text-align: center;
-}
+
 /* Base styles for .win */
 .win {
     position: fixed;
@@ -191,7 +166,7 @@ option{
     font-weight: 600;
     z-index: 1;
     animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    color: white;
+    color: #fffbd5;
     margin: 10px 0;
 }
 /* Winner styles */
@@ -205,13 +180,13 @@ option{
 }
 /* Draw styles */
 .winner.draw {
-    background-color: rgba(252, 252, 14, 0.7); /* Yellow background for draw */
+    background-color:#fffbd5; /* Yellow background for draw */
 }
 /* Sign styles (X or O) */
 .sign {
     font-size: 150px;
     margin: 0;
-    color: white;
+    color: #fffbd5;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6); /* Add shadow to make the text stand out */
     animation: sign-fade-in 1s ease-out;
 }
@@ -219,22 +194,22 @@ option{
 
 @keyframes winner-highlight {
     0% { transform: scale(0.9); }
-    50% { transform: scale(1.1); color: beige; }
+    50% { transform: scale(1.1); color: #fffbd5; }
     100% { transform: scale(1); }
 }
 /* Keyframe animations for winner and draw effects */
 @keyframes winner-highlight {
     0% {
         transform: scale(0.9);
-        color: white;
+        color: #fffbd5;
     }
     50% {
         transform: scale(1.1);
-        color: beige;
+        color: #fffbd5;
     }
     100% {
         transform: scale(1);
-        color: white;
+        color: #fffbd5;
     }
 }
 
@@ -277,8 +252,8 @@ option{
 .win .play-again {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #4CAF50; /* Green background */
-    color: white;
+    background-color: #b20a2c; /* Green background */
+    color: #fffbd5;
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -286,7 +261,7 @@ option{
 }
 
 .win .play-again:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #b20a2c; /* Darker green on hover */
 }
 
 

@@ -44,7 +44,6 @@ const playerSelect = (() => {
     let gameStarted = false;
 
     const updateSelectionUI = () => {
-        console.log(`Player selected: ${selectSymbol}`);
         playerBtns.forEach(btn => {
             if (btn.classList.contains(selectSymbol.toLowerCase())) {
                 btn.classList.add("selected");
@@ -61,13 +60,38 @@ const playerSelect = (() => {
         selectSymbol = "X";
         startGame(selectSymbol);
         updateSelectionUI();
+        disableSymbolSelection();
     });
 
     oBtn.addEventListener("click", () => {
         selectSymbol = "O";
         startGame(selectSymbol);
         updateSelectionUI();
+        disableSymbolSelection();
     });
+
+    const disableSymbolSelection = () => {
+        xBtn.disabled = true;
+        oBtn.disabled = true;
+    };
+
+    // Re-enable the symbol selection buttons after a game reset
+    const enableSymbolSelection = () => {
+        xBtn.disabled = false;
+        oBtn.disabled = false;
+    };
+
+    // Reset player selection state
+    const resetPlayerSelection = () => {
+        selectSymbol = "X"; // Reset symbol selection
+        updateSelectionUI();  // Update UI to reflect no symbol selected
+    };
+       // Set the game started flag
+    const setGameStarted = (status) => {
+        gameStarted = status; // Update the gameStarted status
+    };
+
+    
 
     // Start the game logic
     const startGame = (symbol) => {
@@ -80,6 +104,10 @@ const playerSelect = (() => {
 
     return {
         getSelectionSymbol: () => selectSymbol,
+        enableSymbolSelection,
+        disableSymbolSelection,
+        resetPlayerSelection,
+        setGameStarted,
     };
 })();
 
@@ -173,19 +201,21 @@ const GameController = (() => {
     };
 
         // Restart button logic (updated)
-        document.querySelector('.restart').addEventListener('click', () => {
-            // Reset the board and game state
-            GameBoard.resetBoard();
-            cells.forEach(cell => cell.innerText = ''); // Clear the board UI
-    
-            // Reset player selection and allow users to pick X/O again
-
-            playerSelect.gameStarted = false;
-            playerSelect.updateSelectionUI(); // Reset UI to allow selection of X/O
-        });
+    document.querySelector('.restart').addEventListener('click', () => {
+        resetGame();
+    });
 
     // PlayAgain the game
     document.querySelector('.play-again').addEventListener('click', () => {
+        resetGame();
+        playerSelect.setGameStarted(false); // Reset game started flag
+        playerSelect.resetPlayerSelection();
+        playerSelect.updateSelectionUI();  // Allow symbol selection again
+        playerSelect.enableSymbolSelection(); // Re-enable symbol selection buttons
+    });
+
+    // Reset the game
+    const resetGame = () => {
         GameBoard.resetBoard();
         cells.forEach(cell => cell.innerText = ''); // Clear the board UI
         document.querySelector('.win').classList.remove('show');
@@ -194,8 +224,9 @@ const GameController = (() => {
         document.querySelector('.o-text').classList.add('hide');
         document.querySelector('.play-again').classList.add('hide'); // Hide the Play Again button
 
-        playerSelect.getSelectionSymbol(); // Allow the user to select X/O again (optional)
-    });
+        // Re-enable symbol selection after game reset
+        playerSelect.enableSymbolSelection(); // Re-enable symbol selection buttons
+    };
 
     return {
         startGame,
