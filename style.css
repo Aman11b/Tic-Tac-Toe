@@ -99,14 +99,16 @@ body{
     padding: 0.6em 1.6em;
 }
 .selected{
-    color: #b20a2c;
+    color: #fffbd5;
+    background-color:#FA4032;
     font-weight: 400;
     border: none;
     transform: scale(1.03);
 }
 .not-selected{
     color: #fffbd5;
-    font-weight: 400;
+    background-color: #ed1a44;
+    font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
 .selected:hover,
@@ -120,7 +122,11 @@ body{
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    gap: 1em;
+    gap: 0.5em;
+}
+.player p{
+    font-size: 0.5em;
+    display: inline-block;
 }
 .player .card {
     margin-right: 15px;
@@ -154,43 +160,133 @@ option{
     margin: 0.3em;
     text-align: center;
 }
-.win p{
+/* Base styles for .win */
+.win {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    backdrop-filter: blur(10px); /* Apply background blur */
+    z-index: 100;
+    overflow: hidden;
+    flex-direction: column;
+    text-align: center;
+    opacity: 0; /* Initially hide the .win container */
+    visibility: hidden; /* Ensure it is hidden by default */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition for opacity */
+}
+/* Show the win container when win or draw class is active */
+.win.show {
+    opacity: 1;
+    visibility: visible;
+}
+/* Common styles for all text inside .win */
+.win p {
     font-family: 'Advent Pro', sans-serif;
     font-weight: 600;
     z-index: 1;
     animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    color: white;
+    margin: 10px 0;
 }
+/* Winner styles */
 .winner {
-    position: fixed;
-    left: 50%;
-    top: 25%;
-    transform: translate(-50%, 0);
     font-size: 35px;
-    color: #b20a2c;
     animation: winner-highlight 0.8s ease-out;
+    background-color: rgba(178, 10, 44, 0.7); /* Red background for winner */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 }
+/* Draw styles */
+.winner.draw {
+    background-color: rgba(252, 252, 14, 0.7); /* Yellow background for draw */
+}
+/* Sign styles (X or O) */
+.sign {
+    font-size: 150px;
+    margin: 0;
+    color: white;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6); /* Add shadow to make the text stand out */
+    animation: sign-fade-in 1s ease-out;
+}
+
 
 @keyframes winner-highlight {
     0% { transform: scale(0.9); }
     50% { transform: scale(1.1); color: beige; }
     100% { transform: scale(1); }
 }
-
-.sign {
-    position: fixed;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, 0);
-    font-size: 150px;
-    margin: 0;
+/* Keyframe animations for winner and draw effects */
+@keyframes winner-highlight {
+    0% {
+        transform: scale(0.9);
+        color: white;
+    }
+    50% {
+        transform: scale(1.1);
+        color: beige;
+    }
+    100% {
+        transform: scale(1);
+        color: white;
+    }
 }
 
+@keyframes sign-fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Focus-in effect for the winner's text */
+@keyframes focus-in-expand {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Hide text when not applicable */
 .hide {
     display: none;
 }
 
-.btn ,.field{
+/* Additional style for game buttons and fields (if needed) */
+.btn, .field {
     transform: all 0.3s ease;
+}
+.win .play-again {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.win .play-again:hover {
+    background-color: #45a049; /* Darker green on hover */
 }
 
 
